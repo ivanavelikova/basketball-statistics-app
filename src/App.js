@@ -2,6 +2,11 @@ import './App.css';
 import { useState } from "react";
 import {splitStringToArr, formatArrToMatrix, sanitizeArr} from './utils/dataUtils';
 import DataTable from "./components/DataTable";
+import MostPointsInSingleGameDataTable from "./components/MostPointsInSingleGameDataTable";
+import MostPointsForAllTimeDataTable from './components/MostPointsForAllTimeDataTable';
+import PointsPerGameTimeDataTable from './components/PointsPerGameTimeDataTable';
+import MostPointsForAllTimePerTeamDataTable from './components/MostPointsForAllTimePerTeamDataTable';
+import BestPlayerInTeamPerPointsDataTable from './components/BestPlayerInTeamPerPointsDataTable';
 
 function App() {
   const [data, setData] = useState([]);
@@ -55,7 +60,12 @@ function App() {
        <input type={"file"} accept={".csv"} onChange={handleFileChange}/>
        <button>IMPORT</button>
      </form>
-     <DataTable data={data}/>
+     <DataTable data={data} />
+     <MostPointsInSingleGameDataTable data={data} />
+     <MostPointsForAllTimeDataTable data={data} />
+     <PointsPerGameTimeDataTable data={data} />
+     <MostPointsForAllTimePerTeamDataTable data={data} />
+     <BestPlayerInTeamPerPointsDataTable data={data} />
     </div>
   );
 }
