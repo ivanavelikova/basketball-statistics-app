@@ -1,12 +1,7 @@
 import './App.css';
 import { useState } from "react";
-import {splitStringToArr, formatArrToMatrix, sanitizeArr} from './utils/dataUtils';
-import DataTable from "./components/DataTable";
-import MostPointsInSingleGameDataTable from "./components/MostPointsInSingleGameDataTable";
-import MostPointsForAllTimeDataTable from './components/MostPointsForAllTimeDataTable';
-import PointsPerGameTimeDataTable from './components/PointsPerGameTimeDataTable';
-import MostPointsForAllTimePerTeamDataTable from './components/MostPointsForAllTimePerTeamDataTable';
-import BestPlayerInTeamPerPointsDataTable from './components/BestPlayerInTeamPerPointsDataTable';
+import { NavLink, Outlet } from 'react-router-dom';
+import { splitStringToArr, formatArrToMatrix, sanitizeArr } from './utils/dataUtils';
 
 function App() {
   const [data, setData] = useState([]);
@@ -60,12 +55,16 @@ function App() {
        <input type={"file"} accept={".csv"} onChange={handleFileChange}/>
        <button>IMPORT</button>
      </form>
-     <DataTable data={data} />
-     <MostPointsInSingleGameDataTable data={data} />
-     <MostPointsForAllTimeDataTable data={data} />
-     <PointsPerGameTimeDataTable data={data} />
-     <MostPointsForAllTimePerTeamDataTable data={data} />
-     <BestPlayerInTeamPerPointsDataTable data={data} />
+     <nav>
+      <NavLink to={"/stats"} state={{ data: data }}>All Stats</NavLink>
+      <NavLink to={"/most-points-all-time"} state={{ data: data }}>Most Points For All Time</NavLink>
+      <NavLink to={"/most-points-all-time-teams"} state={{ data: data }}>Most Points For All Time Per Team</NavLink>
+      <NavLink to={"/most-points-single-game"} state={{ data: data }}>Most Points In A Single Game</NavLink>
+      <NavLink to={"/best-player-teams"} state={{ data: data }}>Best Player In Team</NavLink>
+      <NavLink to={"/points-game"} state={{ data: data }}>Points Per Game Time</NavLink>
+     </nav>
+     
+     {!!data.length && <Outlet />}
     </div>
   );
 }

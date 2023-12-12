@@ -1,4 +1,9 @@
-function MostPointsForAllTimeDataTable({data}) {
+import { useLocation } from "react-router-dom";
+
+function MostPointsForAllTimeDataTable() {
+    const location = useLocation();
+    const data = location.state["data"];
+
     const playerData = data.reduce((players, row) => {
         const playerKey = row[0];
 
@@ -16,28 +21,30 @@ function MostPointsForAllTimeDataTable({data}) {
     });
 
     return (
-        <table>
-            <thead>
-                <tr>
-                    <th>Ranking</th>
-                    <th>Player Name</th>
-                    <th>Team</th>
-                    <th>Total Scored Points</th>
-                </tr>
-            </thead>
-            <tbody>
-                {sortedPlayerData.map((row, index) => {
-                    return (
-                        <tr key={index}>
-                            <td>{index+1}</td>
-                            <td>{row[0]}</td>
-                            <td>{row[1]}</td>
-                            <td>{row[2]}</td>
-                        </tr>
-                    );
-                })}
-            </tbody>
-        </table>
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ranking</th>
+                        <th>Player Name</th>
+                        <th>Team</th>
+                        <th>Total Scored Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {sortedPlayerData.map((row, index) => {
+                        return (
+                            <tr key={index}>
+                                <td>{index+1}</td>
+                                <td>{row[0]}</td>
+                                <td>{row[1]}</td>
+                                <td>{row[2]}</td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+        </div>
     );
 }
 

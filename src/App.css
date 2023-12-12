@@ -1,3 +1,25 @@
 .App {
   text-align: center;
 }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  margin: 24px;
+}
+
+nav {
+  margin: 24px;
+}
+
+nav a {
+  text-decoration: none;
+  padding: 4px 12px;
+  border: 1px solid #000;
+}
