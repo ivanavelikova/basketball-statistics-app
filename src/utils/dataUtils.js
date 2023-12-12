@@ -1,21 +1,21 @@
 function splitStringToArr(string) {
-    return string.split("\r\n");
+    return string.split(/(\r\n|\r|\n)/g);
 }
 
-function formatArrToMatrix(arr) {
-    return arr
+function formatArrToMatrix(array) {
+    return array
         .filter((row) => row.trim().length !== 0)
-        .map((row) => row.split(',').map((cell) => cell.trim()));
+        .map((row) => row.split(",").map(trimString));
 }
 
-function sanitizeArr(arr) {
-    return arr.map((row) => {
-        return row.map((cell) => cell.trim());
-    })
+function trimString(string) {
+    return string.trim();
 }
 
-export {
-    splitStringToArr,
-    formatArrToMatrix,
-    sanitizeArr
+function sanitizeArr(array) {
+    return array.map((row) => {
+        return row.map(trimString);
+    });
 }
+
+export { splitStringToArr, formatArrToMatrix, sanitizeArr };
